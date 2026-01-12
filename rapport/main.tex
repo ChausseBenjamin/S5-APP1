@@ -1,0 +1,111 @@
+\documentclass[a11paper]{article}
+
+% \usepackage{karnaugh-map}
+\usepackage{tabularx}
+\usepackage{titlepage}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{document}
+\usepackage{booktabs}
+\usepackage{float}
+
+\usepackage[dvipsnames]{xcolor}
+
+% \renewcommand{\not}[1]{\overline{#1}}
+\renewcommand{\not}[1]{#1^{\prime}}
+\newcommand{\rhs}[1]{#1^{\prime}}
+\newcommand{\xor}{\oplus}
+\newcommand{\Cuz}[1]{\Arrow{\footnotesize #1}}
+
+% \item $A+B=B+A \hspace{\fill}\text{commutativity}$
+\usepackage{enumitem}       % customizable list environments
+
+
+\title{Devoir}
+
+\class{Logique Combinatoire}
+\classnb{APP1}
+
+\teacher{Marwan Besrour \& Gabriel Bélanger}
+
+\newcommand{\todo}[1]{\begin{color}{Red}\textbf{TODO:} #1\end{color}}
+\newcommand{\note}[1]{\begin{color}{Orange}\textbf{NOTE:} #1\end{color}}
+\newcommand{\fixme}[1]{\begin{color}{Fuchsia}\textbf{FIXME:} #1\end{color}}
+\newcommand{\question}[1]{\begin{color}{ForestGreen}\textbf{QUESTION:} #1\end{color}}
+
+\newcommand{\dd}[1]{\frac{\textrm{d}}{\textrm{d}#1}}
+
+
+\author{
+  \addtolength{\tabcolsep}{-0.4em}
+  \begin{tabular}{rcl} % Ajouter des auteurs au besoin
+      Benjamin Chausse & -- & CHAB1704 \\
+      Shawn Couture    & -- & COUS1912 \\
+  \end{tabular}
+}
+
+\begin{document}
+\maketitle
+
+
+\section{Analyse cinématique}
+
+\subsection{Positions}
+
+\begin{align}
+	\vec{XO} = \begin{bmatrix} 0\\l_0\\0 \end{bmatrix} \hspace{1cm}
+	\vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\ l_1\sin{\theta} \\0 \end{bmatrix} \hspace{1cm}
+	\vec{BA} = \begin{bmatrix} l_2\cos{\varphi}\\l_2\sin{\varphi} \\0 \end{bmatrix} \\
+	\vec{B} = \vec{XO}+\vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\l_0+l_1\sin{\theta} \\0 \end{bmatrix} \\
+	\vec{A} = \vec{XO}+\vec{OB} &= \begin{bmatrix}
+	l_1\cos{\theta}+l_2\cos{\varphi}\\l_0+l_1\sin{\theta}+l_2\sin{\varphi} \\0 \end{bmatrix} \\
+\end{align}
+
+Autrement dit:
+
+\begin{align}
+	B_x(\theta) = l_1\cos{\theta} \hspace{1cm}
+	  B_y(\theta) &= l_0+l_1\sin{\theta} \hspace{1cm}
+		B_z(\theta) = 0 \\
+	A_x(\theta\varphi) = l_1\cos{\theta}+l_2\cos{\varphi} \hspace{1cm}
+		A_y(\theta\varphi) &= l_0+l_1\sin{\theta}+l_2\sin{\varphi} \hspace{1cm}
+		A_z(\theta\varphi) = 0
+\end{align}
+
+\subsection{Vitesses}
+
+
+\subsubsection{Vitesses angulaires}
+
+Considérons la vitesse du point A selon la vitesse angulaire du moteur
+$M_B$. Pour ce faire, il est pris pour acquis que le moteur $M_A$ garde son
+angle comme statique relatif à l'horizon. $\varphi$ est alors trait é comme une
+constante lorsque que les équations de positions précédentes sont dérivées.
+
+$\theta$ et $\varphi$ qui étaient précédement considérées comme des valeurs sont
+maintenant traitées comme des fonctions puisqu'elles peuvent varier dans le
+temps alors qu'elles expérimentent (ou pas) une vitesse angulaire.
+
+
+\begin{align}
+	\theta = \theta(t) \rightarrow \dd{t}\theta(t) = \omega_B = \textrm{constante} \\
+	\varphi(t) = \textrm{constante} \rightarrow \dd{t}\varphi(t) = 0 \\
+\end{align}
+
+Ces fonctions peuvent alors êtres utilisées pour mettre en relation le temps et
+la position pour ensuite trouver la vitesse en fonction du temps par une
+dérivation:
+
+\begin{align}
+	A_x(t) &= l_1\cos( \theta(t) )+l_2\cos( \varphi(t) ) \\
+	V_A_x &= \dd{t} A_x(t) = \dd{t} \Big(l_1\cos( \theta(t) )+l_2\cos( \varphi(t))\Big) \\
+				&=  \dd{t}l_1\cos( \theta(t) )+ \dd{t}l_2\cos( \varphi(t) ) \\
+				&=  l_1\dd{t}\cos(\theta(t))+ l_2\dd{t}\cos(constante) \\
+				&=  l_1\dd{t}\cos(\theta(t))+ 0 \\
+\end{align}
+
+\subsection{Accélérations}
+\subsubsection{Accélérations linéaires}
+\subsubsection{Accélérations angulaires}
+
+\end{document}
