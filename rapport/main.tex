@@ -1,6 +1,5 @@
 \documentclass[a11paper]{article}
 
-% \usepackage{karnaugh-map}
 \usepackage{tabularx}
 \usepackage{titlepage}
 \usepackage{amsmath}
@@ -8,20 +7,14 @@
 \usepackage{document}
 \usepackage{booktabs}
 \usepackage{float}
-
+\usepackage{graphicx}
+\usepackage{utils}
+\usepackage{multicol}
 \usepackage[dvipsnames]{xcolor}
-
-% \renewcommand{\not}[1]{\overline{#1}}
-\renewcommand{\not}[1]{#1^{\prime}}
-\newcommand{\rhs}[1]{#1^{\prime}}
-\newcommand{\xor}{\oplus}
-\newcommand{\Cuz}[1]{\Arrow{\footnotesize #1}}
-
-% \item $A+B=B+A \hspace{\fill}\text{commutativity}$
 \usepackage{enumitem}       % customizable list environments
 
 
-\title{Devoir}
+\title{Rapport d'APP}
 
 \class{Logique Combinatoire}
 \classnb{APP1}
@@ -34,6 +27,7 @@
 \newcommand{\question}[1]{\begin{color}{ForestGreen}\textbf{QUESTION:} #1\end{color}}
 
 \newcommand{\dd}[1]{\frac{\partial}{\partial#1}}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
 
 \author{
   \addtolength{\tabcolsep}{-0.4em}
@@ -45,68 +39,223 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
 
 
 \section{Analyse cinématique}
 
-\subsection{Positions}
+\subsection{Analyse géométrique}
+\label{sec:geometry}
+
+\noindent
+\begin{minipage}[t]{0.4\textwidth}
+\begin{figure}[H]
+  \centering
+  \begin{center}
+    \includegraphics[width=\textwidth]{figures/geometry.pdf}
+  \end{center}
+  \caption{Tiges du bras mécanique}
+  \label{fig:geometry}
+\end{figure}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.6\textwidth}
 
 \begin{align}
-	\vec{XO} = \begin{bmatrix} 0\\l_0\\0 \end{bmatrix} \hspace{1cm}
-	\vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\ l_1\sin{\theta} \\0 \end{bmatrix} \hspace{1cm}
-	\vec{BA} = \begin{bmatrix} l_2\cos{\varphi}\\l_2\sin{\varphi} \\0 \end{bmatrix} \\
-	\vec{B} = \vec{XO}+\vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\l_0+l_1\sin{\theta} \\0 \end{bmatrix} \\
-	\vec{A} = \vec{XO}+\vec{OB} &= \begin{bmatrix}
-	l_1\cos{\theta}+l_2\cos{\varphi}\\l_0+l_1\sin{\theta}+l_2\sin{\varphi} \\0 \end{bmatrix} \\
+  \vec{XO} = \begin{bmatrix} 0\\l_0\\0 \end{bmatrix} \hspace{.5cm}
+  \vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\ l_1\sin{\theta} \\0 \end{bmatrix} \hspace{.5cm}
+  \vec{BA} = \begin{bmatrix} l_2\cos{\varphi}\\l_2\sin{\varphi} \\0 \end{bmatrix} \\
+  \vec{B} = \vec{XO}+\vec{OB} &= \begin{bmatrix} l_1\cos{\theta}\\l_0+l_1\sin{\theta} \\0 \end{bmatrix} \\
+  \vec{A} = \vec{B}+\vec{BA} &= \begin{bmatrix}
+  l_1\cos{\theta}+l_2\cos{\varphi}\\l_0+l_1\sin{\theta}+l_2\sin{\varphi} \\0 \end{bmatrix} \\
+  \intertext{Autrement dit:}
+  B_x(\theta) &= l_1\cos{\theta} \\
+  B_y(\theta) &= l_0+l_1\sin{\theta} \\
+  A_x(\theta,\varphi) &= l_1\cos{\theta}+l_2\cos{\varphi} \\
+  A_y(\theta,\varphi) &= l_0+l_1\sin{\theta}+l_2\sin{\varphi} \\
 \end{align}
-
-Autrement dit:
-
-\begin{align}
-	B_x(\theta) = l_1\cos{\theta} \hspace{1cm}
-	  B_y(\theta) &= l_0+l_1\sin{\theta} \hspace{1cm}
-		B_z(\theta) = 0 \\
-	A_x(\theta,\varphi) = l_1\cos{\theta}+l_2\cos{\varphi} \hspace{1cm}
-		A_y(\theta,\varphi) &= l_0+l_1\sin{\theta}+l_2\sin{\varphi} \hspace{1cm}
-		A_z(\theta,\varphi) = 0
-\end{align}
+\end{minipage}
 
 \subsection{Vitesses}
+\label{sec:speed}
 
+Lorsque présenté avec des angles fixes, il est possible de trouver les coordonés
+$x$,$y$ en fonction de ceux-ci. Toutefois, il se peut que ces angles varie
+dans le temps (ce qui est essentiel à considérer pour déterminer la vitesse du
+point $A$). $\theta$ et $\varphi$ sont donc dorénavant présentés commes des fonctions
+pour le reste de l'analyse cinématique générale du bras mécanique:
+
+\begin{equation*}
+  \theta \rightarrow \theta(t) &\hspace{1cm} \varphi \rightarrow \varphi(t)
+\end{equation*}
+
+Déterminer la vitesse du point $A$ ne devient par la suite qu'un exercice de
+dérivation dans le temps de la position, en utilisant les équation dévelopées
+en \ref{sec:geometry} comme fondement. Afin d'en faciliter la résolution (et
+la lecture), cette opération est segmenté par composant $x$, $y$ dans les
+sections suivantes.
+
+\subsubsection{Composante $x$}
 
 \begin{align}
-	\theta \rightarrow \theta(t) &\hspace{1cm} \varphi \rightarrow \varphi(t)
+  A_x(t) &= l_1\cos{\theta(t)}+l_2\cos{\varphi(t)} \hspace{1cm} \\
+  \dd{t} A_x(t) &= \dd{t} l_1\cos(\theta(t)) + \dd{t} l_2\cos(\varphi(t)) \\
+  V_A_x(t) &= \dd{t} l_1\cos(\theta(t)) + \dd{t} l_2\cos(\varphi(t)) \\
+  V_A_x(t) &= l_1\dd{t} \cos(\theta(t)) + l_2\dd{t} \cos(\varphi(t)) \\
+  V_A_x(t) &= l_1\left( -\sin(\theta(t))\dot\theta(t)  \right) +
+    l_2\left( - \sin(\varphi(t))\dot\varphi(t) \right) \\
+  V_A_x(t) &= -l_1\sin(\theta(t))\dot\theta(t)
+    - l_2\sin(\varphi(t))\dot\varphi(t) \\
 \end{align}
 
-\subsubsection{en relation à $x$}
-
+\subsubsection{Composante $y$}
 \begin{align}
-	A_x(t) &= l_1\cos{\theta(t)}+l_2\cos{\varphi(t)} \hspace{1cm} \\
-	\dd{t} A_x(t) &= \dd{t} l_1\cos(\theta(t)) + \dd{t} l_2\cos(\varphi(t)) \\
-	V_A_x(t) &= \dd{t} l_1\cos(\theta(t)) + \dd{t} l_2\cos(\varphi(t)) \\
-	V_A_x(t) &= l_1\dd{t} \cos(\theta(t)) + l_2\dd{t} \cos(\varphi(t)) \\
-	V_A_x(t) &= l_1\left( -\sin(\theta(t))\dot\theta(t)  \right) +
-		l_2\left( - \sin(\varphi(t))\dot\varphi(t) \right) \\
-	V_A_x(t) &= -l_1\sin(\theta(t))\dot\theta(t)
-	  - l_2\sin(\varphi(t))\dot\varphi(t) \\
+  A_y(t)&=l_0+l_1\sin(\theta(t))+l_2\sin(\varphi(t)) \\
+  \dd{t}A_y(t) &=
+      \dd{t}l_0
+    + \dd{t}l_1\sin(\theta(t))
+    + \dd{t}l_2\sin(\varphi(t)) \\
+  V_{A_y}(t) &=
+      \dd{t}l_1\sin(\theta(t))
+    + \dd{t}l_2\sin(\varphi(t)) \\
+  V_{A_y}(t) &=
+      l_1\dd{t}\sin(\theta(t))
+    + l_2\dd{t}\sin(\varphi(t)) \\
+  V_{A_y}(t) &=
+      l_1\cos(\theta(t))\cdot\dot{\theta}(t)
+    + l_2\cos(\varphi(t))\cdot\dot{\varphi}(t)
 \end{align}
 
 \subsection{Accélérations}
 
-\subsubsection{en relation à $x$}
+L'accélération se définit comme étant la dérivée de la vitesse. Comme la
+vitesse à déjà été définie de façon générale en \ref{sec:speed}, il ne sufit
+qu'à en effectuer la dérivée (encore une fois par composante pour simplifier
+la lecture) afin d'obtenir un solution générale de l'accélération selon
+n'importe qu'elles fonction décrivant le mouvement angulaire des moteurs
+dans le temps.
+
+\subsubsection{Composante $x$}
 
 \begin{align}
-	V_A_x(t) &= -l_1\sin(\theta(t))\dot\theta(t)
-	  - l_2\sin(\varphi(t))\dot\varphi(t) \\
-	\dd{t} V_A_x(t) &= \dd{t}\left(-l_1\sin(\theta(t))\dot\theta(t)
-		- l_2\sin(\varphi(t))\dot\varphi(t)\right) \\
-	\alpha_A_x(t) &= -l_1 \dd{t}\sin(\theta(t))\dot\theta(t)
-	  - l_2\dd{t}\sin(\varphi(t))\dot\varphi(t) \\
-	\alpha_A_x(t) &= -l_1 \left(
-			\cos(\theta(t))\dot{\theta}(t)^2 + \sin(\theta(t))\ddot{\theta}(t)
-		\right) - l_2 \left(
-			\cos(\phi(t))\dot{\phi}(t)^2 + \sin(\phi(t))\ddot{\phi}(t)
-		\right)
+  V_A_x(t) &= -l_1\sin(\theta(t))\dot\theta(t)
+    - l_2\sin(\varphi(t))\dot\varphi(t) \\
+  \dd{t} V_A_x(t) &= \dd{t}\left(-l_1\sin(\theta(t))\dot\theta(t)
+    - l_2\sin(\varphi(t))\dot\varphi(t)\right) \\
+  \alpha_A_x(t) &= -l_1 \dd{t}\sin(\theta(t))\dot\theta(t)
+    - l_2\dd{t}\sin(\varphi(t))\dot\varphi(t) \\
+  \alpha_A_x(t) &= -l_1 \left(
+      \cos(\theta(t))\dot{\theta}(t)^2 + \sin(\theta(t))\ddot{\theta}(t)
+    \right) - l_2 \left(
+      \cos(\varphi(t))\dot{\varphi}(t)^2 + \sin(\varphi(t))\ddot{\varphi}(t)
+    \right)
+\end{align}
+
+\subsubsection{Composante $y$}
+
+\begin{align}
+  \alpha_{A_y}(t) &=
+      \dd{t} l_1\cos(\theta(t))\cdot\dot{\theta}(t)
+    + \dd{t} l_2\cos(\varphi(t))\cdot\dot{\varphi}(t) \\
+  \alpha_{A_y}(t) &=
+      l_1\dd{t} \cos(\theta(t))\cdot\dot{\theta}(t)
+    + l_2\dd{t} \cos(\varphi(t))\cdot\dot{\varphi}(t) \\
+  \alpha_{A_y}(t) &=
+     l_1\left(-\sin(\theta(t))\cdot\dot\theta(t)\cdot\dot{\theta}(t) + \cos(\theta(t))\cdot\ddot{\theta}(t)\right)
+   + l_2\dd{t} \cos(\varphi(t))\cdot\dot{\varphi}(t) \\
+  \alpha_{A_y}(t) &=
+		 l_1\left(\cos(\theta(t))\cdot\ddot{\theta}(t) -\sin(\theta(t))\cdot\dot\theta(t)^2 \right)
+   + l_2\dd{t} \cos(\varphi(t))\cdot\dot{\varphi}(t) \\
+  \alpha_{A_y}(t) &=
+		 l_1\left(\cos(\theta(t))\cdot\ddot{\theta}(t) -\sin(\theta(t))\cdot\dot\theta(t)^2 \right)
+	 + l_2\left( -\sin(\varphi(t))\cdot\dot\varphi(t)\cdot\dot{\varphi}(t) + \cos(\varphi(t))\cdot\ddot{\varphi}(t) \right) \\
+  \alpha_{A_y}(t) &=
+		 l_1\left(\cos(\theta(t))\cdot\ddot{\theta}(t) -\sin(\theta(t))\cdot\dot\theta(t)^2 \right)
+	 + l_2\left(\cos(\varphi(t))\cdot\ddot{\varphi}(t) -\sin(\varphi(t))\cdot\dot\varphi(t)^2 \right)
+\end{align}
+\newpage
+
+
+\section{Analyse statique}
+
+  \begin{multicols}{2}
+    \begin{definitions}[]
+      \vec{\alpha_g} & Accélération gravitationelle \\
+      m_A            & Masse de l'objet accroché au point $A$ \\
+      m_{l_2}        & Masse de la tige $l_2$ \\
+      \vec{P_l_2}    & Poids de la tige $l_2$ \\
+      \vec{P_A}      & Poids de l'objet accroché au point $A$ \\
+      \vec{F_I}      & Force Inconnu nécessaire afin que la somme des forces soit nulle \\
+      \vec{BA}       & Vecteur de longueur de la tige $l_2$ \\
+      \vec{BA}/2     & Vecteur de demi-longueur (centre) de la tige $l_2$ \\
+      \vec{M_l_2} & Moment au point $B$ causé par la force $P_A$ \\
+      \vec{M_A} & Moment au point $B$ causé par la force $P_A$ \\
+      \vec{M_I} & Moment inconnu nécessaire afin que la somme des moments nul
+    \end{definitions}
+
+    \columnbreak
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\linewidth]{figures/dcl.pdf}
+      \caption{DCL de la tige $\overline{BA}$}
+      \label{fig:dcl}
+    \end{figure}
+  \end{multicols}
+
+\begin{align}
+  \vec{P_l_2} &= m_l_2 \cdot \vec{\alpha_g}
+    = m_l_2 \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ -9.81 m_l_2 \\ 0 \end{bmatrix} \\
+  \vec{P_A} &= m_A \cdot \vec{\alpha_g}
+    = m_A \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+  \sum{\vec{F}} &= \vec{P_l_2} + \vec{P_A} + \vec{F_I} = \vec{0} \\
+  \vec{0} &=
+    \begin{bmatrix} 0 \\ -9.81 m_l_2 \\ 0 \end{bmatrix} +
+    \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} +
+    \vec{F_I} \\
+  \vec{F_I} &=
+    - \begin{bmatrix} 0 \\ -9.81 m_l_2 \\ 0 \end{bmatrix}
+    - \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} =
+    \begin{bmatrix} 0 \\ 9.81 m_l_2 \\ 0 \end{bmatrix}  +
+    \begin{bmatrix} 0 \\ 9.81 m_A \\ 0 \end{bmatrix} \\
+  \vec{F_I} &=
+    \begin{bmatrix} 0 \\ 9.81(m_l_2+ m_A) \\ 0 \end{bmatrix} \\
+\end{align}
+
+\begin{align}
+  \vec{BA}   &= \begin{bmatrix} \cos{l_2}\\ \sin{l_2}\\ 0 \end{bmatrix} \\
+  \vec{BA}/2 &= \frac{1}{2} \begin{bmatrix} \cos{l_2}\\ \sin{l_2}\\ 0 \end{bmatrix}
+    = \begin{bmatrix} \cos{l_2}/2 \\ \sin{l_2}/2 \\ 0 \end{bmatrix} \\
+\end{align}
+
+\begin{align}
+  \vec{M_A} &= \vec{BA}\times\vec{P_A}
+    = \begin{bmatrix} \cos{l_2}\\ \sin{l_2}\\ 0 \end{bmatrix}
+      \times \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+    &=  \vec{i} \begin{vmatrix} \sin{l_2} & 0         \\ -9.81m_A & 0        \end{vmatrix}
+      - \vec{j} \begin{vmatrix} \cos{l_2} & 0         \\ 0        & 0        \end{vmatrix}
+      + \vec{k} \begin{vmatrix} \cos{l_2} & \sin{l_2} \\ 0        & -9.81m_A \end{vmatrix} \\
+    &= 0\vec{i} - 0\vec{j} + \left(-9.81m_A\cos{l_2}-0\right)\vec{k}
+      = \begin{bmatrix} 0\\0\\-9.81m_A\cos{l_2}\end{bmatrix} \\
+  \vec{M_l_2} &= (\vec{BA}/2)\times\vec{P_A}
+    = \begin{bmatrix} \cos{l_2}/2 \\ \sin{l_2}/2\\ 0 \end{bmatrix}
+      \times \begin{bmatrix} 0 \\ -9.81 m_l_2 \\ 0 \end{bmatrix} \\
+    &=  \vec{i} \begin{vmatrix} \sin{l_2}/2 & 0           \\ -9.81m_l_2 & 0          \end{vmatrix}
+      - \vec{j} \begin{vmatrix} \cos{l_2}/2 & 0           \\ 0          & 0          \end{vmatrix}
+      + \vec{k} \begin{vmatrix} \cos{l_2}/2 & \sin{l_2}/2 \\ 0          & -9.81m_l_2 \end{vmatrix} \\
+    &= 0\vec{i} - 0\vec{j} + \frac{-9.81m_l_2\cos{l_2}}{2}\vec{k}
+      = \begin{bmatrix} 0\\0\\-(9.81m_l_2\cos{l_2})/2 \end{bmatrix} \\
+  \sum{\vec{M}} &= \vec{M_A} + \vec{M_l_2} + \vec{M_I} = \vec{0} \\
+  \vec{0} &= \begin{bmatrix} 0\\0\\-9.81m_A\cos{l_2}\end{bmatrix}
+    + \begin{bmatrix} 0\\0\\-(9.81m_l_2\cos{l_2})/2 \end{bmatrix}
+    + \vec{M_I} \\
+  \vec{M_I} &= - \begin{bmatrix} 0\\0\\-9.81m_A\cos{l_2}\end{bmatrix}
+    - \begin{bmatrix} 0\\0\\-(9.81m_l_2\cos{l_2})/2 \end{bmatrix} \\
+    &= \begin{bmatrix} 0\\0\\9.81m_A\cos{l_2}\end{bmatrix}
+      + \begin{bmatrix} 0\\0\\(9.81m_l_2\cos{l_2})/2 \end{bmatrix} \\
+        &= \begin{bmatrix} 0\\0\\9.81(m_A\cos{l_2}+m_l_2\cos{l_2}/2) \end{bmatrix}
 \end{align}
 
 \end{document}

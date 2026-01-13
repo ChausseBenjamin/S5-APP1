@@ -3,4 +3,5 @@
 *.log
 *.synctex.gz
 *.xml
-*.pdf
+main.pdf
+*.toc
