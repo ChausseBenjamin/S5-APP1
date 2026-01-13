@@ -9,25 +9,25 @@ l_2 = 25; %% Second Arm (BA)
 
 function result = pos_O()
 	global l_O
-	%%        X  Y    Z
+	%         X  Y    Z
 	result = [0, l_O, 0];
 end
 
 function result = pos_B(theta)
 	global l_O l_1 l_2
 	result = [
-		l_1 * cos(theta),           %% X
-		l_O + ( l_1 * sin(theta) ), %% Y
-		0                           %% Z
+		l_1 * cos(theta),           % X
+		l_O + ( l_1 * sin(theta) ), % Y
+		0                           % Z
 	];
 end
 
 function result = pos_A(theta, phi)
 	global l_O l_1 l_2
 	result = [
-		l_1 * cos(theta) + l_2*cos(theta+phi),     %% X
-		l_O + l_1*sin(theta) + l_2*sin(theta+phi), %% Y
-		0                                          %% Z
+		l_1 * cos(theta) + l_2*cos(theta+phi),     % X
+		l_O + l_1*sin(theta) + l_2*sin(theta+phi), % Y
+		0                                          % Z
 	];
 end
 
