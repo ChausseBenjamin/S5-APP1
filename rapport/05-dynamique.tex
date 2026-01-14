@@ -3,10 +3,13 @@ Forces \vec F_B
 
 En dynamique, lasomme des [[External force|force externes]] c'est
 
+\begin{equation*}
 \sum\vec F_e=m\cdot\vec\gamma_G
+\end{equation*}
 
 Hors, l'équation de la statique se transforme lorsqu'on veut trouvé $\vec F_B$ car la somme n'est plus égal à $0$:
 
+\begin{equation*}
 m\cdot\vec\gamma_G=
 \vec F_B +
 \begin{bmatrix}
@@ -14,9 +17,11 @@ m\cdot\vec\gamma_G=
 g\cdot(m_B+m_{BA}+m_{A}) \\
 0
 \end{bmatrix}
+\end{equation*}
 
 L'équation avec $\vec F_B$ isolé est:
 
+\begin{equation*}
 \vec F_B =
 m\cdot\vec\gamma_G-
 \begin{bmatrix}
@@ -24,17 +29,22 @@ m\cdot\vec\gamma_G-
 g\cdot(m_B+m_{BA}+m_{A}) \\
 0
 \end{bmatrix}
+\end{equation*}
 
 De l'équation plus haut, $\vec\gamma_G$ c'est l'accélération linéaire du centre de masse. $m$ c'est la masse total.
 $\vec\gamma_G$ est exprimé par une accélération tangentielle et une accélération centripète:
 
+
+\begin{equation*}
 \vec\gamma_G=\vec\gamma_G^t+\vec\gamma_G^n
+\end{equation*}
 
 Ou:
 	- l'accélération tangentielle c'est $\alpha\times\vec r$
 	- l'accélération centripète c'est $\vec\omega\times(\vec\omega\times\vec r)$
 $\vec r$ est en réalité $\vec r_{B/G}$ qui est ceci:
 
+\begin{align}
 \vec r=\frac{l_2}{2}
 \begin{bmatrix}
 \cos\varphi \\
@@ -48,11 +58,13 @@ $\vec r$ est en réalité $\vec r_{B/G}$ qui est ceci:
 \frac{l_2}{2}\cdot\sin\varphi \\
 0 \\
 \end{bmatrix}
+\end{align}
 
 L'accélération est une constante, posé par la problématique. Et afin de simplifé les équations,
 La vitesse initial est posé comme nulle: $\vec\omega=\vec0$. Ceci simplifie grandement l'équation.
 Une fois remplacé, on obtient:
 
+\begin{align}
 \vec\gamma_G=\vec\gamma_G^t+\vec\gamma_G^n
 
 
@@ -89,9 +101,9 @@ Une fois remplacé, on obtient:
 \alpha_{AB}\cdot\frac{l_2}{2}\cdot\cos\varphi \\
 0
 \end{bmatrix}
-
+\end{align}
 Ça se remplace facilement dans l'équation initial. Afin de rendre l'équation plus facile à lire; $m_t=m_B+m_{BA}+m_A$.
-
+\begin{align}
 \vec F_B =
 m_{total}\cdot\vec\gamma_G-
 \begin{bmatrix}
@@ -140,3 +152,4 @@ g\cdot m_t \\
 (\alpha_{AB}\cdot m_t\frac{l_2}{2}\cdot\sin\varphi)-g\cdot m_t \\
 0 \\
 \end{bmatrix}
+\end{align}
