@@ -22,7 +22,7 @@ jobs:
         with:
           root_file: ${{ env.LATEX_MAIN }}
           working_directory: ${{ env.LATEX_DIR }}
-          args: -pdf -file-line-error -interaction=nonstopmode
+          args: -pdf -file-line-error -interaction=nonstopmode -f
 
       - name: Rename PDF for standalone download
         run: |
