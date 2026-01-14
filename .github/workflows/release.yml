@@ -24,12 +24,15 @@ jobs:
           working_directory: ${{ env.LATEX_DIR }}
 
       - name: Rename PDF for standalone download
-        run: cp ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf document.pdf
+        run: |
+          MAIN_FILE="${{ env.LATEX_MAIN }}"
+          cp ${{ env.LATEX_DIR }}/${MAIN_FILE%.tex}.pdf document.pdf
 
       - name: Prepare ZIP with license
         run: |
+          MAIN_FILE="${{ env.LATEX_MAIN }}"
           mkdir -p release_content
-          cp ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf release_content/document.pdf
+          cp ${{ env.LATEX_DIR }}/${MAIN_FILE%.tex}.pdf release_content/document.pdf
           cp LICENSE release_content/
           zip -j release.zip release_content/*
 
