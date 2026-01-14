@@ -14,6 +14,7 @@ contraindre $\varphi$ en fonction de $\theta$:
   \varphi &= \arccos(1-\cos{\theta})
 \end{align}
 
+\newpage
 Pour éviter d'avoir à dériver $\varphi$ dans le temps, il est possible
 d'utiliser l'équation \ref{eq:vert-simple-x} et les dérivées partielles:
 
@@ -60,7 +61,9 @@ l'équation \ref{eq:substitute-time}:
 	A_y(t)     &= l\left[1+\sin(\omega t)+\sin(\arccos(1-\cos(\omega t)))\right] \\
 	A_y(\theta)&= l\left[1+\sin(\omega t)+\sin(\arccos(1-\cos(\omega t)))\right] \\
 	           &= l\left[1+\sin(\omega \frac{\theta}{\omega})+\sin(\arccos(1-\cos(\omega \frac{\theta}{\omega})))\right] \\
-	           &= l\left[1+\sin(\theta)+\sin(\arccos(1-\cos(\theta)))\right] \\
+	           &= l\left[1+\sin(\theta)+\sin(\arccos(1-\cos(\theta)))\right]
+\end{align}
+\begin{align}
   V_{A_y}(t) &=
       l\cos(\omega t)\omega
     - l\cos(\arccos(1-\cos(\omega t))) \left(
@@ -88,3 +91,10 @@ l'équation \ref{eq:substitute-time}:
 				\frac{\sin\theta}{\sin(\arccos(1-\cos\theta))}\omega
 			\right)\right]
 \end{align}
+
+Pour le cas à l'étude $0\leq\theta\leq\frac{\pi}{3}$, une modélisation des
+équations (figure \ref{fig:vertical-plots}) avec les valeurs spécifiés au tableau
+\ref{tab:values-cinematique} peut être trouvée en annexe. Aussi, les
+positions de départ et de fin du bras pour cette modélisation peuvent être
+consulté à la figure \ref{fig:vertical-fig}.
+
