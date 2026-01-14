@@ -1,0 +1,95 @@
+
+Dans un premier temps, il est demandé d'observer la force et le moment en
+$B$ alors que le bras est immobile (statique) selon l'angle auquel il se
+trouve. Un DSL n'analysant que le segment $\overline{BA}$ est utilisé pour
+faire abstraction de ce qui se produit en ce qui concerne $\overline{OB}$ et
+de ses forces, considérant le tout commes des forces/moments externes
+nécessaires à garder la tige observée immobile.
+
+\begin{multicols}{2}
+  \begin{definitions}[]
+    \vec{\alpha_g} & Accélération gravitationelle \\
+    m_A            & Masse de l'objet accroché au point $A$ \\
+    m_{BA}         & Masse de la tige $\overline{BA}$ \\
+    \vec{P_l_2}    & Poids de la tige $l_2$ \\
+    \vec{P_A}      & Poids de l'objet accroché au point $A$ \\
+    \vec{P_B}      & Poids du moteur $B$ \\
+    \vec{F_B}      & Force en $B$ nécessaire afin que la somme des forces soit nulle \\
+    \vec{BA}       & Tige $\overline{BA}$ \\
+    \vec{BA}/2     & Moitié de la tige $\overline{BA}$ \\
+    \vec{M_l_2}    & Moment au point $B$ causé par $\vec{P_l_2}$ \\
+    \vec{M_A}      & Moment au point $B$ causé par $\vec{P_A}$ \\
+    \vec{M_B}      & Moment en $B$ nécessaire afin que la somme des moments nul
+  \end{definitions}
+
+  \columnbreak
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{figures/static.pdf}
+    \caption{DCL de la tige $\overline{BA}$}
+    \label{fig:dcl}
+  \end{figure}
+\end{multicols}
+
+\begin{align}
+  \vec{P_l_2} &= m_{BA} \cdot \vec{\alpha_g}
+    = m_{BA} \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} \\
+  \vec{P_A} &= m_A \cdot \vec{\alpha_g}
+    = m_A \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+  \vec{P_B} &= m_B \cdot \vec{\alpha_g}
+    = m_B \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} \\
+    \sum{\vec{F}} &= \vec{P_l_2} + \vec{P_A} + \vec{F_B} + \vec{P_B}= \vec{0} \\
+  \vec{0} &=
+    \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} +
+    \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} +
+    \vec{F_B} +
+    \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} \\
+  \vec{F_B} &=
+    - \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix}
+    - \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix}
+    - \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} =
+    \begin{bmatrix} 0 \\ 9.81 m_{BA} \\ 0 \end{bmatrix}  +
+    \begin{bmatrix} 0 \\ 9.81 m_A \\ 0 \end{bmatrix}     +
+    \begin{bmatrix} 0 \\ 9.81 m_B \\ 0 \end{bmatrix} \\
+  \vec{F_B} &=
+    \begin{bmatrix} 0 \\ 9.81(m_{BA}+m_A+M_B) \\ 0 \end{bmatrix}
+\end{align}
+
+Les moments sont calculés en fonction du point $O$. Le moment causé par le poids
+du moteur n'est pas considéré puisqu'il est nul (il est à une distance 0 du
+point $O$).
+
+\begin{align}
+  \vec{BA}   &= \begin{bmatrix} l_2\cos(\varphi)\\ l_2\sin(\varphi)\\ 0 \end{bmatrix} \\
+  \vec{BA}/2 &= \frac{1}{2} \begin{bmatrix} l_2\cos(\varphi)\\ l_2\sin(\varphi)\\ 0 \end{bmatrix}
+    = \begin{bmatrix} l_2\cos(\varphi)/2 \\ l_2\sin(\varphi)/2 \\ 0 \end{bmatrix} \\
+  \vec{M_A} &= \vec{BA}\times\vec{P_A}
+    = \begin{bmatrix} l_2\cos(\varphi)\\ l_2\sin(\varphi)\\ 0 \end{bmatrix}
+      \times \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+    &=  \vec{i} \begin{vmatrix} l_2\sin(\varphi) & 0         \\ -9.81m_A & 0        \end{vmatrix}
+      - \vec{j} \begin{vmatrix} l_2\cos(\varphi) & 0         \\ 0        & 0        \end{vmatrix}
+      + \vec{k} \begin{vmatrix} l_2\cos(\varphi) & l_2\sin(\varphi) \\ 0        & -9.81m_A \end{vmatrix} \\
+    &= 0\vec{i} - 0\vec{j} + \left(-9.81m_Al_2\cos(\varphi)-0\right)\vec{k}
+      = \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix} \\
+  \vec{M_l_2} &= (\vec{BA}/2)\times\vec{P_A}
+    = \begin{bmatrix} l_2\cos(\varphi)/2 \\ l_2\sin(\varphi)/2\\ 0 \end{bmatrix}
+      \times \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} \\
+    &=  \vec{i} \begin{vmatrix} l_2\sin(\varphi)/2 & 0           \\ -9.81m_{BA} & 0          \end{vmatrix}
+      - \vec{j} \begin{vmatrix} l_2\cos(\varphi)/2 & 0           \\ 0          & 0          \end{vmatrix}
+      + \vec{k} \begin{vmatrix} l_2\cos(\varphi)/2 & l_2\sin(\varphi)/2 \\ 0          & -9.81m_{BA} \end{vmatrix} \\
+    &= 0\vec{i} - 0\vec{j} + \frac{-9.81m_{BA}l_2\cos(\varphi)}{2}\vec{k}
+      = \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix} \\
+  \sum{\vec{M}} &= \vec{M_A} + \vec{M_l_2} + \vec{M_B} = \vec{0} \\
+  \vec{0} &= \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix}
+    + \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix}
+    + \vec{M_B} \\
+  \vec{M_B} &= - \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix}
+    - \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix} \\
+    &= \begin{bmatrix} 0\\0\\9.81m_Al_2\cos(\varphi)\end{bmatrix}
+    + \begin{bmatrix} 0\\0\\9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix} \\
+      &= \begin{bmatrix} 0\\0\\9.81\cos(\varphi)l_2(m_A+m_{BA}/2) \end{bmatrix}
+\end{align}
