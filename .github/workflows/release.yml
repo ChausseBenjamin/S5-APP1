@@ -27,12 +27,13 @@ jobs:
 
       - name: Verify PDF was created
         run: |
-          if [ ! -f ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf ]; then
+          MAIN_FILE="${{ env.LATEX_MAIN }}"
+          if [ ! -f ${{ env.LATEX_DIR }}/${MAIN_FILE%.tex}.pdf ]; then
             echo "Error: PDF was not generated"
             exit 1
           else
             echo "Success: PDF generated successfully"
-            ls -la ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf
+            ls -la ${{ env.LATEX_DIR }}/${MAIN_FILE%.tex}.pdf
           fi
 
       - name: Rename PDF for standalone download
