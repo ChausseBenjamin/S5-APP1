@@ -33,8 +33,10 @@ selon cet axe. Encore une fois, les équation générales sont utilisées comme
 point de départ:
 
 \begin{align}
-	A_x(t) &= l\cos{\theta(t)}+l\cos{\varphi(t)}
-	  = l \left(\cos{\theta(t)}+\cos{\varphi(t)}\right)\\
+	A_y(t) &= l+l\sin{\theta(t)}+l\sin{\varphi(t)} \\
+         &= l+l\sin{\theta(t)}+l\sin{\arccos(1-\cos(\theta(t)))} \\
+         &= l+l\sin{\theta(t)}+l\sin{\arccos(1-\cos(\theta(t)))} \\
+				 &= l\left[1+\sin{\theta(t)}+\sin{\arccos(1-\cos(\theta(t)))}\right] \\
   V_{A_y}(t) &=
       l_1\cos(\theta(t))\dot{\theta}(t)
     + l_2\cos(\varphi(t))\dot{\varphi}(t) \\
@@ -55,9 +57,10 @@ enfin tout considérer en fonction de $\theta$ au lieu du temps à l'aide de
 l'équation \ref{eq:substitute-time}:
 
 \begin{align}
-	A_x(t) &= l \left(\cos(\omega t)+\cos(\arccos(1-\cos(\omega t)))\right)\\
-	A_x(\theta) &= l \left(\cos(\omega \frac{\theta}{\omega})+\cos(\arccos(1-\cos(\omega \frac{\theta}{\omega})))\right)\\
-	            &= l \left(\cos\theta+\cos(\arccos(1-\cos\theta))\right)\\
+	A_y(t)     &= l\left[1+\sin(\omega t)+\sin(\arccos(1-\cos(\omega t)))\right] \\
+	A_y(\theta)&= l\left[1+\sin(\omega t)+\sin(\arccos(1-\cos(\omega t)))\right] \\
+	           &= l\left[1+\sin(\omega \frac{\theta}{\omega})+\sin(\arccos(1-\cos(\omega \frac{\theta}{\omega})))\right] \\
+	           &= l\left[1+\sin(\theta)+\sin(\arccos(1-\cos(\theta)))\right] \\
   V_{A_y}(t) &=
       l\cos(\omega t)\omega
     - l\cos(\arccos(1-\cos(\omega t))) \left(
