@@ -14,7 +14,7 @@ thetas = linspace(0,pi/3,1000)
 function result = A_y(theta)
 	global l_O l_1 l_2 omega
 	l = l_1
-	result = l* (1+ sin(theta) + sin( acos(1-cos(theta)) ) )
+	result = l_O+ l* ( sin(theta) + sin( acos(1-cos(theta)) ) )
 end
 
 function result = V_A_y(theta)
