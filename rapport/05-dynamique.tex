@@ -3,9 +3,9 @@
 Dans cette section-ci, le moment de force $\vec{M}_{B,B}$ est calculé à l'aide des moments trouvés lors de l'analyse statique.
 Hors, la somme des moments en dynamique est donnée par l'équation suivante :
 
-\begin{equation*}
+\begin{equation}
   \sum \vec{M}_X = I_X \cdot \alpha
-\end{equation*}
+\end{equation}
 
 En réutilisant les moments de la section de statique, l'équation devient comme suit, où $\vec{M}_{B,B}$ est le couple $C_B$ recherché.
 \begin{align}
@@ -33,6 +33,7 @@ d'une tige uniforme et pour $M_{B,B}$, aucune inertie car le point est exactemen
   I_{AB} &= \frac{m \cdot (l_2/2)^2}{3}
 \end{align}
 
+\newpage
 Voici la résolution de l'inertie totale :
 
 \begin{align}
@@ -67,44 +68,46 @@ Voici les démarches :
 
 En dynamique, la somme des forces externes est :
 
-\begin{equation*}
+\begin{equation}
   \sum\vec{F}_e = m \cdot \vec{\gamma}_G
-\end{equation*}
+\end{equation}
 
 Hors, l'équation de la statique se transforme lorsqu'on veut trouver $\vec{F}_B$ car la somme n'est plus égale à $0$ :
 
-\begin{equation*}
+\begin{equation}
   m \cdot \vec{\gamma}_G = \vec{F}_B +
     \begin{bmatrix}
       0 \\
       g \cdot (m_B + m_{BA} + m_{A}) \\
       0
     \end{bmatrix}
-\end{equation*}
+\end{equation}
 
 L'équation avec $\vec{F}_B$ isolé est :
 
-\begin{equation*}
+\begin{equation}
   \vec{F}_B = m \cdot \vec{\gamma}_G -
     \begin{bmatrix}
       0 \\
       g \cdot (m_B + m_{BA} + m_{A}) \\
       0
     \end{bmatrix}
-\end{equation*}
+\end{equation}
 
 De l'équation plus haut, $\vec{\gamma}_G$ est l'accélération linéaire du centre de masse. $m$ est la masse totale.
 $\vec{\gamma}_G$ est exprimé par une accélération tangentielle et une accélération centripète :
 
-\begin{equation*}
+\begin{equation}
   \vec{\gamma}_G = \vec{\gamma}_G^t + \vec{\gamma}_G^n
-\end{equation*}
+\end{equation}
 
 Où :
 \begin{itemize}
   \item l'accélération tangentielle est $\alpha \times \vec{r}$
   \item l'accélération centripète est $\vec{\omega} \times (\vec{\omega} \times \vec{r})$
 \end{itemize}
+
+\newpage
 $\vec{r}$ est en réalité $\vec{r}_{B/G}$ qui est ceci :
 
 \begin{align}
