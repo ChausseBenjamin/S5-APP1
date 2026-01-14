@@ -1,3 +1,80 @@
+\subsection{Moments \vec M_{B,B}}
+Dans cette section-ci, le moment de force \vec M_{B,B} est calculé à l'aide des moments trouvés lors de l'analyse statique.
+Hors, la somme des moments en dynamique est données par l'équation suivante:
+
+\begin{equation*}
+\sum \vec M=I_X\cdot\alpha
+\end{equation*}
+En réutilisant les moments de la section de statique, l'équation devient comme suit, ou \vec M_{B,B} est le couple C_B recherché.
+\begin{align}
+I_X\cdot\alpha_{BA}=\vec M_{B,B}+\vec M_{A,B}+\vec M_{BA,B}
+
+I_X\cdot\alpha_{BA}=
+\vec M_{B,B}+
+\begin{bmatrix}
+0 \\
+0 \\
+l_2\cdot m_{A}\cdot g\cdot\cos\varphi
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+0 \\
+\frac{l_2}{2}\cdot m_{BA}\cdot g\cdot\cos\varphi
+\end{bmatrix}
+\end{align}
+
+L'équation de la somme des moments d'inertie dit que qu'une inertie total doit être obtenue.
+Hors, pour \vec M_{BA,B} il s'agit d'une masse à une distance L d'un axe de rotation, pour \vec M_{BA,B} il s'agit
+d'une tige uniforme et pour M_{B,B}, aucune inertie car le point est exactement au point choisi pour calculé les moments.
+\begin{align}
+I_B=0
+I_A=m\cdot l_2^2
+I_{AB}=\frac{m\cdot (l_2/2)^2}{3}
+\end{align}
+Voici la résolution de l'inertie total:
+\begin{align}
+I=0+m_Al_2^2+\frac{m_{AB}\cdot{l_2}^2}{3}
+
+I=m_Al_2^2+\frac{m_{AB}\cdot{l_2}^2}{3}
+
+I=l_2^2\cdot (m_A^2+\frac{1}{3}m_{AB})
+\end{align}
+Une fois remplacé dans l'équation, on peut isolé le moment rechercher et calculé tout en fonction des composantes $z$ puisque l'axe est colinéaire.
+Voici les démarches:
+\begin{align}
+l_2^2\cdot (m_A^2+\frac{1}{3}m_{AB})
+\cdot\alpha_{BA}
+=
+\vec M_{B,B}+
+\begin{bmatrix}
+0 \\
+0 \\
+l_2\cdot m_{A}\cdot g\cdot\cos\varphi
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+0 \\
+\frac{l_2}{2}\cdot m_{BA}\cdot g\cdot\cos\varphi
+\end{bmatrix}
+
+-\vec M_{{B,B}_z}
+=
+l_2\cdot m_{A}\cdot g\cdot\cos\varphi
++
+\frac{l_2}{2}\cdot m_{BA}\cdot g\cdot\cos\varphi
+-l_2^2\cdot (m_A^2+\frac{1}{3}m_{AB})
+\cdot\alpha_{BA}
+
+\vec M_{{B,B}_z}
+=
+-g\cdot l_2\cdot\cos\varphi(m_{A}
++
+\frac{1}{2}\cdot m_{BA})
++l_2^2\cdot (m_A^2+\frac{1}{3}m_{AB})
+\cdot\alpha_{BA}
+\end{align}
 
 \subsection{Force \vec F_B}
 
