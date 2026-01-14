@@ -35,7 +35,7 @@ graphics_toolkit('gnuplot');
 
 % Plot: Torque M_B_z(phi)
 figure(1)
-plot(phis, Torque_values, '-', 'linewidth', 4, 'Color', '#E31A1C')
+plot(phis, Torque_values, '-', 'linewidth', 4, 'Color', '#00BA38')
 grid on
 xlabel('{/Symbol j} (rad)')
 ylabel('M_{B_z} (N{/Symbol \267}m)')
