@@ -19,10 +19,21 @@ jobs:
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
+        continue-on-error: true
         with:
           root_file: ${{ env.LATEX_MAIN }}
           working_directory: ${{ env.LATEX_DIR }}
           args: -pdf -file-line-error -interaction=nonstopmode -f
+
+      - name: Verify PDF was created
+        run: |
+          if [ ! -f ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf ]; then
+            echo "Error: PDF was not generated"
+            exit 1
+          else
+            echo "Success: PDF generated successfully"
+            ls -la ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf
+          fi
 
       - name: Rename PDF for standalone download
         run: |
