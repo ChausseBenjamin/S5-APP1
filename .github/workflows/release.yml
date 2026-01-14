@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+env:
+  LATEX_DIR: rapport
+  LATEX_MAIN: 00-main.tex
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ env.LATEX_MAIN }}
+          working_directory: ${{ env.LATEX_DIR }}
+
+      - name: Rename PDF for standalone download
+        run: cp ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf document.pdf
+
+      - name: Prepare ZIP with license
+        run: |
+          mkdir -p release_content
+          cp ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN%.tex }}.pdf release_content/document.pdf
+          cp LICENSE release_content/
+          zip -j release.zip release_content/*
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          files: |
+            document.pdf
+            release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
