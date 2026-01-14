@@ -16,7 +16,7 @@ nécessaires à garder la tige observée immobile.
 
   \columnbreak
 
-  \begin{definitions}[]
+	\begin{definitions}[]
     \vec{\alpha_g} & Accélération gravitationelle \\
     m_A            & Masse de l'objet accroché au point $A$ \\
     m_{BA}         & Masse de la tige $\overline{BA}$ \\
@@ -34,29 +34,15 @@ nécessaires à garder la tige observée immobile.
 
 \begin{align}
   \vec{P_l_2} &= m_{BA} \cdot \vec{\alpha_g}
-    = m_{BA} \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
-    = \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} \\
+    = -9.81m_{BA}\vec{j} \\
   \vec{P_A} &= m_A \cdot \vec{\alpha_g}
-    = m_A \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
-    = \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+    = -9.81m_A\vec{j} \\
   \vec{P_B} &= m_B \cdot \vec{\alpha_g}
-    = m_B \cdot \begin{bmatrix} 0 \\ -9.81 \\ 0 \end{bmatrix}
-    = \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} \\
+    = -9.81m_B\vec{j} \\
     \sum{\vec{F}} &= \vec{P_l_2} + \vec{P_A} + \vec{F_B} + \vec{P_B}= \vec{0} \\
-  \vec{0} &=
-    \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} +
-    \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} +
-    \vec{F_B} +
-    \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} \\
-  \vec{F_B} &=
-    - \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix}
-    - \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix}
-    - \begin{bmatrix} 0 \\ -9.81 m_B \\ 0 \end{bmatrix} =
-    \begin{bmatrix} 0 \\ 9.81 m_{BA} \\ 0 \end{bmatrix}  +
-    \begin{bmatrix} 0 \\ 9.81 m_A \\ 0 \end{bmatrix}     +
-    \begin{bmatrix} 0 \\ 9.81 m_B \\ 0 \end{bmatrix} \\
-  \vec{F_B} &=
-    \begin{bmatrix} 0 \\ 9.81(m_{BA}+m_A+M_B) \\ 0 \end{bmatrix}
+  \vec{0} &= -9.81m_{BA}\vec{j} + (-9.81m_A\vec{j}) + \vec{F_B} + (-9.81m_B\vec{j}) \\
+  \vec{F_B} &= 9.81m_{BA}\vec{j} + 9.81m_A\vec{j} + 9.81m_B\vec{j} \\
+  \vec{F_B} &= 9.81(m_{BA}+m_A+m_B)\vec{j}
 \end{align}
 
 Les moments sont calculés en fonction du point $O$. Le moment causé par le poids
@@ -69,31 +55,26 @@ point $O$).
     = \begin{bmatrix} l_2\cos(\varphi)/2 \\ l_2\sin(\varphi)/2 \\ 0 \end{bmatrix} \\
   \vec{M_A} &= \vec{BA}\times\vec{P_A}
     = \begin{bmatrix} l_2\cos(\varphi)\\ l_2\sin(\varphi)\\ 0 \end{bmatrix}
-      \times \begin{bmatrix} 0 \\ -9.81 m_A \\ 0 \end{bmatrix} \\
+      \times (-9.81 m_A\vec{j}) \\
     &=  \vec{i} \begin{vmatrix} l_2\sin(\varphi) & 0         \\ -9.81m_A & 0        \end{vmatrix}
       - \vec{j} \begin{vmatrix} l_2\cos(\varphi) & 0         \\ 0        & 0        \end{vmatrix}
       + \vec{k} \begin{vmatrix} l_2\cos(\varphi) & l_2\sin(\varphi) \\ 0        & -9.81m_A \end{vmatrix} \\
     &= 0\vec{i} - 0\vec{j} + \left(-9.81m_Al_2\cos(\varphi)-0\right)\vec{k}
-      = \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix} \\
-  \vec{M_l_2} &= (\vec{BA}/2)\times\vec{P_A}
+      = -9.81m_Al_2\cos(\varphi)\vec{k} \\
+  \vec{M_l_2} &= (\vec{BA}/2)\times\vec{P_l_2}
     = \begin{bmatrix} l_2\cos(\varphi)/2 \\ l_2\sin(\varphi)/2\\ 0 \end{bmatrix}
-      \times \begin{bmatrix} 0 \\ -9.81 m_{BA} \\ 0 \end{bmatrix} \\
+      \times (-9.81 m_{BA}\vec{j}) \\
     &=  \vec{i} \begin{vmatrix} l_2\sin(\varphi)/2 & 0           \\ -9.81m_{BA} & 0          \end{vmatrix}
       - \vec{j} \begin{vmatrix} l_2\cos(\varphi)/2 & 0           \\ 0          & 0          \end{vmatrix}
       + \vec{k} \begin{vmatrix} l_2\cos(\varphi)/2 & l_2\sin(\varphi)/2 \\ 0          & -9.81m_{BA} \end{vmatrix} \\
     &= 0\vec{i} - 0\vec{j} + \frac{-9.81m_{BA}l_2\cos(\varphi)}{2}\vec{k}
-      = \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix}
+      = -\frac{9.81m_{BA}l_2\cos(\varphi)}{2}\vec{k}
 \end{align}
 \begin{align}
   \sum{\vec{M}} &= \vec{M_A} + \vec{M_l_2} + \vec{M_B} = \vec{0} \\
-  \vec{0} &= \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix}
-    + \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix}
-    + \vec{M_B} \\
-  \vec{M_B} &= - \begin{bmatrix} 0\\0\\-9.81m_Al_2\cos(\varphi)\end{bmatrix}
-    - \begin{bmatrix} 0\\0\\-9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix} \\
-    &= \begin{bmatrix} 0\\0\\9.81m_Al_2\cos(\varphi)\end{bmatrix}
-    + \begin{bmatrix} 0\\0\\9.81m_{BA}l_2\cos(\varphi)/2 \end{bmatrix} \\
-      &= \begin{bmatrix} 0\\0\\9.81\cos(\varphi)l_2(m_A+m_{BA}/2) \end{bmatrix}
+  \vec{0} &= -9.81m_Al_2\cos(\varphi)\vec{k} + \left(-\frac{9.81m_{BA}l_2\cos(\varphi)}{2}\vec{k}\right) + \vec{M_B} \\
+  \vec{M_B} &= 9.81m_Al_2\cos(\varphi)\vec{k} + \frac{9.81m_{BA}l_2\cos(\varphi)}{2}\vec{k} \\
+    &= 9.81\cos(\varphi)l_2(m_A+m_{BA}/2)\vec{k}
 \end{align}
 
 Pour le cas statique, l'analyse porte sur l'évolution du couple résultant $M_{B_z}$ en fonction de l'angle $\varphi$ lorsque $\varphi$ varie entre $-\frac{\pi}{3}$ et $\frac{\pi}{3}$. La modélisation présentée à la figure \ref{fig:static-torque} utilise les valeurs spécifiées au tableau \ref{tab:values-statique-dynamique}. Dans ce cas, seules les forces gravitationnelles sont considérées, l'accélération angulaire étant nulle ($\ddot{\varphi} = 0$).

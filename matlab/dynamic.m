@@ -4,7 +4,7 @@ close all
 
 global l_O l_1 l_2 m_A m_BA g alpha
 
-% Given parameters - converted to SI units
+
 l_O   = 0.50;   %% Base Shaft (m)
 l_1   = 0.25;   %% First Arm  (OB) (m)
 l_2   = 0.25;   %% Second Arm (BA) (m)
@@ -18,21 +18,14 @@ phis = linspace(-pi/3, pi/3, 1000);
 
 function result = Torque_B_z_dynamic(phi)
 	global l_O l_1 l_2 m_A m_BA g alpha
-	% Dynamic torque at B (z-component)
-	% Includes static torque plus dynamic terms from angular acceleration
-	
-	% Static torque component
 	M_static = g * cos(phi) * l_2 * (m_A + m_BA/2);
-	
-	% Dynamic torque component due to angular acceleration
-	% For rod BA: I_BA * alpha + m_A * l_2^2 * alpha
-	% Where I_BA = (1/12) * m_BA * l_2^2 for rod about center + m_BA * (l_2/2)^2 (parallel axis)
+
 	I_BA_center = (1/12) * m_BA * l_2^2;
 	I_BA_B = I_BA_center + m_BA * (l_2/2)^2; % Total moment of inertia about B
 	I_A = m_A * l_2^2; % Point mass at A
-	
+
 	M_dynamic = (I_BA_B + I_A) * alpha;
-	
+
 	result = M_static + M_dynamic;
 end
 

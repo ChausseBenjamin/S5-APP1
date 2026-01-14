@@ -17,8 +17,6 @@ phis = linspace(-pi/3, pi/3, 1000);
 
 function result = Torque_B_z(phi)
 	global l_O l_1 l_2 m_A m_BA g
-	% Torque at B due to static equilibrium (z-component)
-	% M_B_z = g * cos(phi) * l_2 * (m_A + m_BA/2)
 	result = g * cos(phi) * l_2 * (m_A + m_BA/2);
 end
 
