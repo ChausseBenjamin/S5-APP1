@@ -75,10 +75,10 @@ une accélération angulaire, nous obtenons ceci:
   V_A_x(t) &= -l_1\sin(\omega t)\omega
     + l_2\sin(-\omega t)\omega \\
   \alpha_A_x(t) &= -l_1 \left( \cos(\omega t )\omega^2 + \sin(\omega t )\cdot 0 \right)
-    - l_2 \left( -\cos(-\omega t)\omega^2 - \sin(-\omega t )\cdot 0 \right) \\
+    - l_2 \left( \cos(-\omega t)\omega^2 + \sin(-\omega t )\cdot 0 \right) \\
     &=
     - l_1 \cos(\omega t )\omega^2
-    + l_2 \cos(-\omega t)\omega^2
+    - l_2 \cos(-\omega t)\omega^2
 \end{align}
 
 \newpage
@@ -107,8 +107,10 @@ Ainsi:
     + l_2 \cos(-\omega \frac{\theta}{\omega})\omega^2 \\
     &=
     - l \cos(\theta)\omega^2
-    + l \cos(-\theta)\omega^2 \\
-		&= l\omega^2 \left[ \cos(-\theta) - \cos(\theta) \right]
+    - l \cos(-\theta)\omega^2 \\
+		&= -l\omega^2 \left[ \cos(\theta) + \cos(-\theta) \right] \\
+		&= -l\omega^2 \left[ \cos(\theta) + \cos(\theta) \right] \\
+		&= -2l\omega^2 \cos(\theta)
 \end{align}
 
 Pour le cas à l'étude $0\leq\theta\leq\frac{\pi}{3}$, une modélisation des

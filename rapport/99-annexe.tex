@@ -4,21 +4,22 @@
 \section{Mouvement horizontal}
 \begin{figure}[H]
   \centering
-	\begin{subfigure}{.32\linewidth}
+	\begin{subfigure}{.45\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/x-bound-pos.pdf}
+		\includegraphics[width=\textwidth]{figures/horizontal-pos.pdf}
 		\caption{Position en $x$}
 		\label{fig:x-bound-pos}
 	\end{subfigure}
-	\begin{subfigure}{.32\linewidth}
+	\begin{subfigure}{.45\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/x-bound-v.pdf}
+		\includegraphics[width=\textwidth]{figures/horizontal-v.pdf}
 		\caption{Vitesse en $x$}
 		\label{fig:x-bound-v}
 	\end{subfigure}
-	\begin{subfigure}{.32\linewidth}
+
+	\begin{subfigure}{.5\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/x-bound-alpha.pdf}
+		\includegraphics[width=\textwidth]{figures/horizontal-alpha.pdf}
 		\caption{Accélération en $x$}
 		\label{fig:x-bound-alpha}
 	\end{subfigure}
@@ -48,12 +49,43 @@
 
 \section{Mouvement vertical}
 
-\todo{Plot position $y$}
-\todo{Plot vitesse $y$}
-\todo{Plot accel $y$}
+\begin{figure}[H]
+  \centering
+	\begin{subfigure}{.48\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/vertical-pos.pdf}
+		\caption{Position en $y$}
+		\label{fig:vertical-pos}
+	\end{subfigure}
+	\begin{subfigure}{.48\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/vertical-v.pdf}
+		\caption{Vitesse en $y$}
+		\label{fig:vertical-v}
+	\end{subfigure}
 
-\todo{Dessin $\theta=0$ (start)}
-\todo{Dessin $\theta=\frac{\pi}{3}$ (end)}
+	\caption{Attributs du point $A$ lorsque contraint à un mouvement horizontal}
+	\label{fig:vertical-plots}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+\begin{subfigure}{.36\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/vert-before.pdf}
+		\caption{lorsque $\theta=0$}
+		\label{fig:vert-after}
+	\end{subfigure}
+	\hspace{1cm}
+	\begin{subfigure}{.3\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/vert-after.pdf}
+		\caption{lorsque $\theta=\frac{\pi}{3}$}
+		\label{fig:vert-after}
+	\end{subfigure}
+		\caption{Positionnement du bras contraint à un mouvement en $y$ selon $\theta$}
+	\label{fig:vert-before}
+\end{figure}
 
 \section{Simulations statiques et dynamiques}
 
