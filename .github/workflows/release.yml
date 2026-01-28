@@ -10,6 +10,9 @@ env:
   LATEX_MAIN: 00-main.tex
   DOCKER_IMAGE: chaussebenjamin/tex-compiler
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
