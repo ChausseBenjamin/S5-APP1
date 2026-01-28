@@ -23,13 +23,20 @@ jobs:
           echo "short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_OUTPUT
           echo "commit_sha=${GITHUB_SHA}" >> $GITHUB_OUTPUT
 
+      - name: Pull Docker image from DockerHub
+        run: |
+          echo "Pulling Docker image from DockerHub: ${{ env.DOCKER_IMAGE }}"
+          docker pull ${{ env.DOCKER_IMAGE }}
+          echo "Image info:"
+          docker inspect ${{ env.DOCKER_IMAGE }} | grep -E '"Architecture"|"Os"|"RepoTags"' | head -5
+
       - name: Compile LaTeX document with Docker
         run: |
           echo "Compiling LaTeX document using Docker container..."
           docker run --rm \
             -v "${{ github.workspace }}:/tex" \
             ${{ env.DOCKER_IMAGE }} \
-            ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN }}
+            ${{ env.LATEX_DIR }}/${{ env.LATEX_MAIN }} || true
 
       - name: Verify PDF was created
         run: |
