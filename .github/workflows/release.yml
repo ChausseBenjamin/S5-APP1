@@ -48,21 +48,28 @@ jobs:
           fi
 
       - name: Prepare release assets
+        id: assets
         run: |
           MAIN_FILE="${{ env.LATEX_MAIN }}"
           PDF_FILE="${MAIN_FILE%.tex}.pdf"
           SHORT_SHA="${{ steps.vars.outputs.short_sha }}"
+          BASE_NAME="${MAIN_FILE%.tex}"
           
           # Create descriptive filenames with commit hash
-          cp ${{ env.LATEX_DIR }}/$PDF_FILE "${MAIN_FILE%.tex}-${SHORT_SHA}.pdf"
+          cp ${{ env.LATEX_DIR }}/$PDF_FILE "${BASE_NAME}-${SHORT_SHA}.pdf"
           
           # Create ZIP with PDF and license
           mkdir -p release_content
-          cp ${{ env.LATEX_DIR }}/$PDF_FILE "release_content/${MAIN_FILE%.tex}.pdf"
+          cp ${{ env.LATEX_DIR }}/$PDF_FILE "release_content/${BASE_NAME}.pdf"
           if [ -f LICENSE ]; then
             cp LICENSE release_content/
           fi
-          zip -r "${MAIN_FILE%.tex}-${SHORT_SHA}.zip" release_content/
+          zip -r "${BASE_NAME}-${SHORT_SHA}.zip" release_content/
+          
+          # Set outputs for later steps
+          echo "pdf_name=${BASE_NAME}-${SHORT_SHA}.pdf" >> $GITHUB_OUTPUT
+          echo "zip_name=${BASE_NAME}-${SHORT_SHA}.zip" >> $GITHUB_OUTPUT
+          echo "base_name=${BASE_NAME}" >> $GITHUB_OUTPUT
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -85,14 +92,14 @@ jobs:
             Automated release of LaTeX document compiled from commit ${{ steps.vars.outputs.commit_sha }}.
             
             **Files included:**
-            - `${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.pdf` - Standalone PDF document
-            - `${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.zip` - PDF with license file
+            - `${{ steps.assets.outputs.pdf_name }}` - Standalone PDF document
+            - `${{ steps.assets.outputs.zip_name }}` - PDF with license file
             
             **Commit:** ${{ github.event.head_commit.message }}
             **Author:** ${{ github.event.head_commit.author.name }}
           files: |
-            ${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.pdf
-            ${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.zip
+            ${{ steps.assets.outputs.pdf_name }}
+            ${{ steps.assets.outputs.zip_name }}
           draft: false
           prerelease: false
         env:
@@ -101,6 +108,6 @@ jobs:
       - name: Summary
         run: |
           echo "✅ LaTeX document compiled successfully!"
-          echo "📄 PDF: ${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.pdf"
-          echo "📦 ZIP: ${{ env.LATEX_MAIN | replace('.tex', '') }}-${{ steps.vars.outputs.short_sha }}.zip"
+          echo "📄 PDF: ${{ steps.assets.outputs.pdf_name }}"
+          echo "📦 ZIP: ${{ steps.assets.outputs.zip_name }}"
           echo "🔗 Release: https://github.com/${{ github.repository }}/releases/tag/v${{ github.run_number }}"
